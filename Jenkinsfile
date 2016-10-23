@@ -3,7 +3,7 @@ withEnv(["KUBERNETES_HOST_NAME=hero-command-test"]) {
   node {
     git poll: true, url: "https://github.com/robertBrem/hero-frontend.git"
     def npmHome = tool 'NPM'
-    sh "env.PATH = ${npmHome}/bin:${env.PATH}"
+    env.PATH = "${npmHome}/bin:${env.PATH}"
     sh "npm run build"
     sh "USER_NAME=robertbrem VERSION=1.0.${currentBuild.number} ./build.js"
   }
