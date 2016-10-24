@@ -5,6 +5,7 @@ withEnv(["KUBERNETES_HOST_NAME=hero-command-test"]) {
     def npmHome = tool 'NPM'
     env.PATH = "${npmHome}/bin:${env.PATH}"
     sh "npm install"
+    sh "npm run test"
     sh "npm run build"
     sh "USER_NAME=robertbrem VERSION=1.0.${currentBuild.number} ./build.js"
   }
