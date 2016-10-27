@@ -8,6 +8,7 @@ withEnv(["KUBERNETES_HOST_NAME=hero-command-test"]) {
     sh "npm run test"
     sh "npm run build"
     sh "USER_NAME=robertbrem VERSION=1.0.${currentBuild.number} ./build.js"
+    step([$class: 'JUnitResultArchiver', testResults: '**TESTS-*.xml'])
   }
 
 }
